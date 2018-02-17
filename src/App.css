@@ -25,10 +25,21 @@
   height: 180px;
 }
 
+.Apply .form-field {
+  min-height: 70px;
+}
+
 .Apply .form-field input {
   padding: 4px;
   margin: 6px;
   border-radius: 7px;
+}
+
+.Apply .form-field .invalid-field-warning {
+  border: 1px solid #f80;
+  color: #c30;
+  max-width: 40vw;
+  margin: 0 auto;
 }
 
 .Apply .form-field select {

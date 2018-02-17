@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
 import leaf from './leaf.svg';
 import Snoop from './snoop.svg';
+import emailRegex from './emailRegex';
 import './App.css';
 
 class App extends Component {
   state = {
     rapName: '',
+    isRapNameValid: false,
     albumSales: 0,
     applyingFor: '',
     country: '',
     whichState: '',
+    email: '',
+    isEmailValid: false,
   }
 
-  setRapName = ({ target: { value } })=> this.setState({ rapName: value })
+  setRapName = ({ target: { value } })=>
+    this.setState({
+      rapName: value,
+      isRapNameValid: value.includes('gg') && (value.length > 2),
+    })
+
+  setEmail = ({ target: { value } })=>
+    this.setState({
+      email: value,
+      isEmailValid: emailRegex.exec(value) !== null,
+    })
+  
   setAlbumSales = ({ target: { value } })=> this.setState({ albumSales: value })
   setApplyingFor = ({ target: { value } })=> this.setState({ applyingFor: value })
   setCountry = ({ target: { value } })=> this.setState({ country: value })
@@ -37,6 +52,13 @@ class App extends Component {
                    placeholder='Rap Name'
                    onChange={this.setRapName}
                    value={this.state.rapName}/>
+            {
+              (!this.state.isRapNameValid && (this.state.rapName.length > 2)) && (
+                <div className='invalid-field-warning'>
+                  Rap Name must contain "gg"
+                </div>
+              )
+            }
           </div>
 
           <div className='form-field'>
@@ -78,6 +100,22 @@ class App extends Component {
               )
             }
           </div>
+
+          <div className='form-field'>
+            <label htmlFor='email'>Email</label>
+            <input id='email'
+                   placeholder='Email'
+                   onChange={this.setEmail}
+                   value={this.state.email}/>
+            {
+              (!this.state.isEmailValid && (this.state.email.length > 4)) && (
+                <div className='invalid-field-warning'>
+                  Email address not valid
+                </div>
+              )
+            }
+          </div>
+          
           
           <button onClick={this.submitForm}>Submit</button>
         </div>
