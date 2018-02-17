@@ -31,6 +31,13 @@
   border-radius: 7px;
 }
 
+.Apply .form-field select {
+  padding: 4px;
+  margin: 6px;
+  border-radius: 7px;
+  background-color: white;
+}
+
 
 @keyframes leaf-logo-spin {
   0% {
