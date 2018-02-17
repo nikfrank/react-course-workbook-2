@@ -16,12 +16,12 @@ class App extends Component {
         <div className="Apply">
           <h3>Snoop needs some deets to get started</h3>
           <div className='form-field'>
-            <label for='rap-name'>Rap Name</label>
+            <label htmlFor='rap-name'>Rap Name</label>
             <input id='rap-name' placeholder='Rap Name'/>
           </div>
 
           <div className='form-field'>
-            <label for='album-sales'>Current Album Sales (weekly)</label>
+            <label htmlFor='album-sales'>Current Album Sales (weekly)</label>
             <input type='number' value={0}/>
           </div>
 
