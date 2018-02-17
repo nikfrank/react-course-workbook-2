@@ -117,7 +117,14 @@ class App extends Component {
           </div>
           
           
-          <button onClick={this.submitForm}>Submit</button>
+          <button onClick={this.submitForm}
+                  disabled={!this.state.isEmailValid ||
+                            !this.state.isRapNameValid ||
+                            !this.state.applyingFor ||
+                            !this.state.country ||
+                            (this.state.country ==='USA' && !this.state.whichState)}>
+            Submit
+          </button>
         </div>
       </div>
     );
