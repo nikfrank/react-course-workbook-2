@@ -9,6 +9,9 @@ class App extends Component {
     albumSales: 0,
   }
 
+  setRapName = ({ target: { value } })=> this.setState({ rapName: value })
+  setAlbumSales = ({ target: { value } })=> this.setState({ albumSales: value })
+  
   submitForm = ()=>{
     console.log( this.state );
   }
@@ -23,13 +26,18 @@ class App extends Component {
         <div className="Apply">
           <h3>Snoop needs some deets to get started</h3>
           <div className='form-field'>
-            <label for='rap-name'>Rap Name</label>
-            <input id='rap-name' placeholder='Rap Name' value={this.state.rapName}/>
+            <label htmlFor='rap-name'>Rap Name</label>
+            <input id='rap-name'
+                   placeholder='Rap Name'
+                   onChange={this.setRapName}
+                   value={this.state.rapName}/>
           </div>
 
           <div className='form-field'>
-            <label for='album-sales'>Current Album Sales (weekly)</label>
-            <input type='number' value={this.state.albumSales}/>
+            <label htmlFor='album-sales'>Current Album Sales (weekly)</label>
+            <input type='number'
+                   onChange={this.setAlbumSales}
+                   value={this.state.albumSales}/>
           </div>
 
           <button onClick={this.submitForm}>Submit</button>
