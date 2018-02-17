@@ -4,6 +4,12 @@ import Snoop from './snoop.svg';
 import emailRegex from './emailRegex';
 import './App.css';
 
+
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+
+import 'react-datepicker/dist/react-datepicker.css';
+
 class App extends Component {
   state = {
     rapName: '',
@@ -14,6 +20,7 @@ class App extends Component {
     whichState: '',
     email: '',
     isEmailValid: false,
+    startDate: moment(),
   }
 
   setRapName = ({ target: { value } })=>
@@ -32,9 +39,16 @@ class App extends Component {
   setApplyingFor = ({ target: { value } })=> this.setState({ applyingFor: value })
   setCountry = ({ target: { value } })=> this.setState({ country: value })
   setWhichState = ({ target: { value } })=> this.setState({ whichState: value })
+  setStartDate = startDate=> this.setState({ startDate })
   
   submitForm = ()=>{
-    console.log( this.state );
+    
+    console.log({
+      ...this.state,
+      isRapNameValid: undefined,
+      isEmailValid: undefined,
+      startDate: this.state.startDate.valueOf(),
+    });
   }
   
   render() {
@@ -115,7 +129,12 @@ class App extends Component {
               )
             }
           </div>
-          
+
+          <div className='form-field'>
+            <DatePicker
+                selected={this.state.startDate}
+                onChange={this.setStartDate}/>
+          </div>
           
           <button onClick={this.submitForm}
                   disabled={!this.state.isEmailValid ||
