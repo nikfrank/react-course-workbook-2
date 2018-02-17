@@ -4,7 +4,14 @@ import Snoop from './snoop.svg';
 import './App.css';
 
 class App extends Component {
-  state = {}
+  state = {
+    rapName: '',
+    albumSales: 0,
+  }
+
+  submitForm = ()=>{
+    console.log( this.state );
+  }
   
   render() {
     return (
@@ -17,15 +24,15 @@ class App extends Component {
           <h3>Snoop needs some deets to get started</h3>
           <div className='form-field'>
             <label for='rap-name'>Rap Name</label>
-            <input id='rap-name' placeholder='Rap Name'/>
+            <input id='rap-name' placeholder='Rap Name' value={this.state.rapName}/>
           </div>
 
           <div className='form-field'>
             <label for='album-sales'>Current Album Sales (weekly)</label>
-            <input type='number' value={0}/>
+            <input type='number' value={this.state.albumSales}/>
           </div>
 
-          <button>Submit</button>
+          <button onClick={this.submitForm}>Submit</button>
         </div>
       </div>
     );
