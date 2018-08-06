@@ -47,11 +47,13 @@ class App extends Component {
         <div className='Apply'>
           <h3>Snoop needs some deets to get started</h3>
           <div className='form-field'>
-            <label htmlFor='rap-name'>Rap Name</label>
-            <input id='rap-name'
-                   placeholder='Rap Name'
-                   onChange={this.setRapName}
-                   value={this.state.rapName}/>
+            <label>
+              Rap Name
+              <input id='rap-name'
+                     placeholder='Rap Name'
+                     onChange={this.setRapName}
+                     value={this.state.rapName}/>
+            </label>
             {
               (!this.state.isRapNameValid && (this.state.rapName.length > 2)) && (
                 <div className='invalid-field-warning'>
@@ -62,10 +64,12 @@ class App extends Component {
           </div>
 
           <div className='form-field'>
-            <label htmlFor='album-sales'>Current Album Sales (weekly)</label>
-            <input type='number'
-                   onChange={this.setAlbumSales}
-                   value={this.state.albumSales}/>
+            <label>
+              Current Album Sales (weekly)
+              <input type='number'
+                     onChange={this.setAlbumSales}
+                     value={this.state.albumSales}/>
+            </label>
           </div>
 
           <div className='form-field'>
@@ -102,11 +106,13 @@ class App extends Component {
           </div>
 
           <div className='form-field'>
-            <label htmlFor='email'>Email</label>
-            <input id='email'
-                   placeholder='Email'
-                   onChange={this.setEmail}
-                   value={this.state.email}/>
+            <label>
+              Email
+              <input id='email'
+                     placeholder='Email'
+                     onChange={this.setEmail}
+                     value={this.state.email}/>
+            </label>
             {
               (!this.state.isEmailValid && (this.state.email.length > 4)) && (
                 <div className='invalid-field-warning'>
