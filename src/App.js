@@ -10,6 +10,8 @@ import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
+const snoopColors = ['red', 'purple', 'white', 'black', 'orange', '#0c0'];
+
 class App extends Component {
   state = {
     rapName: '',
@@ -21,6 +23,18 @@ class App extends Component {
     email: '',
     isEmailValid: false,
     startDate: moment(),
+
+    snoopColor: 'purple',
+    snoopFaceColor: 'white',
+  }
+
+  onChangeSnoopColor = ()=> {
+    const colorIndex = Math.floor( Math.random() * snoopColors.length );
+    
+    const newColor = snoopColors[ colorIndex ];
+    const newFaceColor = snoopColors[ (colorIndex +1) % snoopColors.length ];
+    
+    this.setState({ snoopColor: newColor, snoopFaceColor: newFaceColor });
   }
 
   setRapName = ({ target: { value } })=>
@@ -56,7 +70,8 @@ class App extends Component {
       <div className='Apply'>
         <header className='Apply-header'>
           <img src={leaf} className='leaf-logo' alt='leaf' />
-          <Snoop color='purple' faceColor='white' className='snoop-logo'/>
+          <Snoop color={this.state.snoopColor} faceColor={this.state.snoopFaceColor}
+                 className='snoop-logo' onClick={this.onChangeSnoopColor}/>
         </header>
         <div className='Apply'>
           <h3>Snoop needs some deets to get started</h3>

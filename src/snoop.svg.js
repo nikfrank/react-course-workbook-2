@@ -1,8 +1,9 @@
 import React from 'react';
 
-export default ({ color='black', faceColor='white', className='' })=> (
+export default ({ color='black', faceColor='white', className='', onClick=(()=>0) })=> (
   <svg x="0px" y="0px" viewBox="0 0 100 125"
        className={className}
+       onClick={onClick}
        enableBackground="new 0 0 100 100">
     <g>
       <path fill={faceColor} d="M20.9,45.9c0,0,0.4,0.6,0.8,1.4c-0.1-0.6-0.1-1.2-0.2-1.7C21.4,45.7,21.2,45.8,20.9,45.9z"/>
