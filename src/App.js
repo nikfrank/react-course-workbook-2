@@ -25,7 +25,7 @@ class App extends Component {
           <div className='form-field'>
             <label>
               Rap Name
-              <input id='rap-name' placeholder='Rap Name' value={this.state.rapName}/>
+              <input placeholder='Rap Name' value={this.state.rapName}/>
             </label>
           </div>
 
