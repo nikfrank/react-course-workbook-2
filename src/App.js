@@ -9,8 +9,8 @@ class App extends Component {
     albumSales: 0,
   }
 
-  setRapName = ({ target: { value } })=> this.setState({ rapName: value })
-  setAlbumSales = ({ target: { value } })=> this.setState({ albumSales: value })
+  setRapName = (event)=> this.setState({ rapName: event.target.value })
+  setAlbumSales = (event)=> this.setState({ albumSales: +event.target.value })
   
   submitForm = ()=>{
     console.log( this.state );
@@ -23,13 +23,13 @@ class App extends Component {
           <img src={leaf} className="leaf-logo" alt="leaf" />
           <Snoop color='purple' faceColor='white' className='snoop-logo'/>
         </header>
+        
         <div className="Apply">
           <h3>Snoop needs some deets to get started</h3>
           <div className='form-field'>
             <label>
               Rap Name
-              <input id='rap-name'
-                     placeholder='Rap Name'
+              <input placeholder='Rap Name'
                      onChange={this.setRapName}
                      value={this.state.rapName}/>
             </label>
