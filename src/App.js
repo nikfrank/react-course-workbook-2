@@ -18,7 +18,7 @@ class App extends Component {
           <div className='form-field'>
             <label>
               Rap Name
-              <input id='rap-name' placeholder='Rap Name'/>
+              <input placeholder='Rap Name'/>
             </label>
           </div>
 
