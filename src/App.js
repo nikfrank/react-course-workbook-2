@@ -10,6 +10,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 
+import tupac from './tupac.png';
+import ak47 from './ak47.png';
+import goldRecord from './goldRecord.png';
+
+
 const snoopColors = ['red', 'purple', 'white', 'black', 'orange', '#0c0'];
 
 class App extends Component {
@@ -26,6 +31,8 @@ class App extends Component {
 
     snoopHairColor: 'purple',
     snoopFaceColor: 'white',
+
+    showTupac: false,
   }
 
   changeSnoopColor = ()=> {
@@ -63,7 +70,7 @@ class App extends Component {
      (this.state.country ==='USA' && !this.state.whichState)) ?
 
     NotificationManager.warning('Missing Information', 'Application not Submitted', 3000):
-    console.log( this.state );
+    this.setState({ showTupac: true }, ()=> setTimeout(()=> this.setState({ showTupac: false }), 8000));
   }
   
   render() {
@@ -162,6 +169,14 @@ class App extends Component {
           <button onClick={this.submitForm}>
             Submit
           </button>
+
+          {this.state.showTupac ? (
+             <div>
+               <img className='tupac' src={tupac}/>
+               <img className='ak47' src={ak47}/>
+               <img className='goldRecord' src={goldRecord}/>
+             </div>
+          ): null}
         </div>
       </div>
     );

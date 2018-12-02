@@ -50,6 +50,48 @@
 }
 
 
+.tupac {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 50vw;
+  max-width: 400px;
+  z-index: 9;
+}
+
+.ak47 {
+  position: fixed;
+  bottom: 0;
+  left: 180px;
+  height: 150px;
+  width: auto;
+  z-index: 10;
+  transform: scale(-1,1) rotate(40deg);
+}
+
+.goldRecord {
+  height: 40px;
+  width: 40px;
+  position: fixed;
+  bottom: 212px;
+  left: 470px;
+  z-index: 12;
+
+  animation: shoot-record infinite 0.125s linear;
+}
+
+@keyframes shoot-record {
+  from {
+    bottom: 212px;
+    left: 470px;
+  }
+  to {
+    bottom: 1012px;
+    left: 1270px;
+  }
+}
+
+
 @keyframes leaf-logo-spin {
   0% {
     z-index: 5;
