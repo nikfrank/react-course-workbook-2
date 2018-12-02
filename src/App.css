@@ -38,6 +38,8 @@
   border-radius: 7px;
 }
 
+.Apply .form-field input:active,
+.Apply .form-field input:focus,
 .Apply .form-field select:active,
 .Apply .form-field select:focus {
   outline: none;
