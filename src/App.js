@@ -4,11 +4,9 @@ import Snoop from './snoop.svg';
 import emailRegex from './emailRegex';
 import './App.css';
 
+import DatePicker from "react-datepicker";
 
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
-
-import 'react-datepicker/dist/react-datepicker.css';
+import "react-datepicker/dist/react-datepicker.css";
 
 class App extends Component {
   state = {
@@ -20,35 +18,29 @@ class App extends Component {
     whichState: '',
     email: '',
     isEmailValid: false,
-    startDate: moment(),
+    startDate: new Date(),
   }
 
-  setRapName = ({ target: { value } })=>
+  setRapName = (event)=>
     this.setState({
-      rapName: value,
-      isRapNameValid: value.includes('gg') && (value.length > 2),
+      rapName: event.target.value,
+      isRapNameValid: event.target.value.includes('gg'),
     })
 
-  setEmail = ({ target: { value } })=>
+  setEmail = (event)=>
     this.setState({
-      email: value,
-      isEmailValid: emailRegex.exec(value) !== null,
+      email: event.target.value,
+      isEmailValid: emailRegex.exec(event.target.value) !== null,
     })
   
-  setAlbumSales = ({ target: { value } })=> this.setState({ albumSales: value })
-  setApplyingFor = ({ target: { value } })=> this.setState({ applyingFor: value })
-  setCountry = ({ target: { value } })=> this.setState({ country: value })
-  setWhichState = ({ target: { value } })=> this.setState({ whichState: value })
-  setStartDate = startDate=> this.setState({ startDate })
+  setAlbumSales = (event)=> this.setState({ albumSales: +event.target.value })
+  setApplyingFor = (event)=> this.setState({ applyingFor: event.target.value })
+  setCountry = (event)=> this.setState({ country: event.target.value })
+  setWhichState = (event)=> this.setState({ whichState: event.target.value })
+  setStartDate = (startDate)=> this.setState({ startDate })
   
   submitForm = ()=>{
-    
-    console.log({
-      ...this.state,
-      isRapNameValid: undefined,
-      isEmailValid: undefined,
-      startDate: this.state.startDate.valueOf(),
-    });
+    console.log( this.state );
   }
   
   render() {
@@ -58,13 +50,13 @@ class App extends Component {
           <img src={leaf} className='leaf-logo' alt='leaf' />
           <Snoop color='purple' faceColor='white' className='snoop-logo'/>
         </header>
+
         <div className='Apply'>
           <h3>Snoop needs some deets to get started</h3>
           <div className='form-field'>
             <label>
               Rap Name
-              <input id='rap-name'
-                     placeholder='Rap Name'
+              <input placeholder='Rap Name'
                      onChange={this.setRapName}
                      value={this.state.rapName}/>
             </label>
@@ -87,8 +79,7 @@ class App extends Component {
           </div>
 
           <div className='form-field'>
-            <select value={this.state.applyingFor}
-                    onChange={this.setApplyingFor}>
+            <select value={this.state.applyingFor} onChange={this.setApplyingFor}>
               <option value=''>Select Position</option>
               <option value='driver'>Driver</option>
               <option value='trafficker'>Trafficker</option>
@@ -98,32 +89,31 @@ class App extends Component {
           </div>
           
           <div className='form-field'>
-            <select value={this.state.country}
-                    onChange={this.setCountry}>
+            <select value={this.state.country} onChange={this.setCountry}>
               <option value=''>Select Country</option>
               <option value='USA'>USA</option>
               <option value='Canada'>Canada</option>
               <option value='Israel'>Israel</option>
             </select>
+          </div>
 
-            {
-              (this.state.country === 'USA') && (
-                <select value={this.state.whichState}
-                        onChange={this.setWhichState}>
+          {
+            (this.state.country === 'USA') ? (
+              <div className='form-field'>
+                <select value={this.state.whichState} onChange={this.setWhichState}>
                   <option value=''>Select State</option>
                   <option value='CA'>California</option>
                   <option value='NY'>New York</option>
                   <option value='MI'>Michigan</option>
                 </select>
-              )
-            }
-          </div>
+              </div>
+            ) : null
+          }
 
           <div className='form-field'>
             <label>
               Email
-              <input id='email'
-                     placeholder='Email'
+              <input placeholder='Email'
                      onChange={this.setEmail}
                      value={this.state.email}/>
             </label>
@@ -138,8 +128,9 @@ class App extends Component {
 
           <div className='form-field'>
             <DatePicker
-                selected={this.state.startDate}
-                onChange={this.setStartDate}/>
+              selected={this.state.startDate}
+              onChange={this.setStartDate}
+            />
           </div>
           
           <button onClick={this.submitForm}

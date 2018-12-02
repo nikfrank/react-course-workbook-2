@@ -25,10 +25,6 @@
   height: 180px;
 }
 
-.Apply .form-field {
-  min-height: 70px;
-}
-
 .Apply .form-field input {
   padding: 4px;
   margin: 6px;
@@ -49,6 +45,12 @@
   background-color: white;
 }
 
+.Apply .form-field input:active,
+.Apply .form-field input:focus,
+.Apply .form-field select:active,
+.Apply .form-field select:focus {
+  outline: none;
+}
 
 @keyframes leaf-logo-spin {
   0% {
