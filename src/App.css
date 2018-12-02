@@ -31,6 +31,18 @@
   border-radius: 7px;
 }
 
+.Apply .form-field select {
+  background-color: white;
+  padding: 4px;
+  margin: 6px;
+  border-radius: 7px;
+}
+
+.Apply .form-field select:active,
+.Apply .form-field select:focus {
+  outline: none;
+}
+
 
 @keyframes leaf-logo-spin {
   0% {
