@@ -5,8 +5,10 @@ import emailRegex from './emailRegex';
 import './App.css';
 
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
+
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 const snoopColors = ['red', 'purple', 'white', 'black', 'orange', '#0c0'];
 
@@ -54,12 +56,21 @@ class App extends Component {
   setStartDate = (startDate)=> this.setState({ startDate })
   
   submitForm = ()=>{
+    (!this.state.isEmailValid ||
+     !this.state.isRapNameValid ||
+     !this.state.applyingFor ||
+     !this.state.country ||
+     (this.state.country ==='USA' && !this.state.whichState)) ?
+
+    NotificationManager.warning('Missing Information', 'Application not Submitted', 3000):
     console.log( this.state );
   }
   
   render() {
     return (
       <div className='Apply'>
+        <NotificationContainer/>
+        
         <header className='Apply-header'>
           <img src={leaf} className='leaf-logo' alt='leaf' />
           <Snoop color={this.state.snoopHairColor} faceColor={this.state.snoopFaceColor}
@@ -148,12 +159,7 @@ class App extends Component {
             />
           </div>
           
-          <button onClick={this.submitForm}
-                  disabled={!this.state.isEmailValid ||
-                            !this.state.isRapNameValid ||
-                            !this.state.applyingFor ||
-                            !this.state.country ||
-                            (this.state.country ==='USA' && !this.state.whichState)}>
+          <button onClick={this.submitForm}>
             Submit
           </button>
         </div>
