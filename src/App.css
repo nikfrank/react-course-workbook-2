@@ -2,13 +2,15 @@
   text-align: center;
 }
 
+
 .leaf-logo {
-  animation: leaf-logo-spin infinite 10s linear;
+  Xanimation: leaf-logo-spin infinite 10s linear;
   height: 80px;
   position: absolute;
   left: calc( 50% - 36px );
   top: 30px;
 }
+
 
 .Apply-header {
   background-color: #af5;

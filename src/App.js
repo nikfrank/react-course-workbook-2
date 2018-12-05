@@ -8,8 +8,67 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
+const animationFrames = [
+  {
+    zIndex: 5,
+    transform: 'translateX( 0 ) rotate3d( 0, 1, 0, 0 )',
+  },
+  
+  {
+    zIndex: 4,
+    transform: 'translateX( -100% ) rotate3d( 0, 1, 0, 80deg )',
+  },
+  {
+    zIndex: 3,
+    transform: 'translateX( -120% ) rotate3d( 0, 1, 0, 90deg )',
+  },
+  {
+    zIndex: 2,
+    transform: 'translateX( -100% ) rotate3d( 0, 1, 0, 95deg )',
+  },
+
+  {
+    zIndex: 1,
+    transform: 'translateX( -50% ) rotate3d( 0, 1, 0, 150deg )',
+  },
+  
+  {
+    zIndex: 1,
+    transform: 'translateX( 0 ) rotate3d( 0, 1, 0, 180deg )',
+  },
+  
+  {
+    zIndex: 1,
+    transform: 'translateX( 50% ) rotate3d( 0, 1, 0, 210deg )',
+  },
+  
+  {
+    zIndex: 2,
+    transform: 'translateX( 100% ) rotate3d( 0, 1, 0, 265deg )',
+  },
+  {
+    zIndex: 3,
+    transform: 'translateX( 120% ) rotate3d( 0, 1, 0, 270deg )',
+  },
+  {
+    zIndex: 4,
+    transform: 'translateX( 100% ) rotate3d( 0, 1, 0, 280deg )',
+  },
+
+  {
+    zIndex: 5,
+    transform: 'translateX( 0 ) rotate3d( 0, 1, 0, 360deg )',
+  },
+];
+
 class App extends Component {
   state = {
+    Xpos: 0,
+    angle: 0,
+    weedZindex: 5,
+
+    animFrame: 0,
+    
     rapName: '',
     isRapNameValid: false,
     albumSales: 0,
@@ -19,6 +78,11 @@ class App extends Component {
     email: '',
     isEmailValid: false,
     startDate: new Date(),
+
+    snoopHairColor: 'red',
+    snoopFaceColor: 'white',
+
+    isLeafReversed: false,
   }
 
   setRapName = (event)=>
@@ -42,13 +106,54 @@ class App extends Component {
   submitForm = ()=>{
     console.log( this.state );
   }
+
+  colors = ['red', '#f93', '#f0f', 'green' , 'rgba(35, 199, 22, 57)']
+  
+  setNewSnoopFace = ()=> {
+    const newFace = Math.floor( Math.random() * this.colors.length );
+
+    this.setState({
+      snoopFaceColor: this.colors[newFace],
+    });
+  }
+  setNewSnoopHair = ()=> {
+    const newHair = Math.floor( Math.random() * this.colors.length );
+
+    this.setState({
+      snoopHairColor: this.colors[newHair],
+    });
+  }
+
+  reverseLeaf = ()=> this.setState(state => ({
+    isLeafReversed: !state.isLeafReversed
+  }) )
+
+  componentDidMount(){
+    setInterval(()=>this.setState(state=> ({
+      animFrame: (state.animFrame + (this.state.isLeafReversed ? -1:1)
+      +animationFrames.length) %
+      animationFrames.length,
+    })), 200);
+  }
   
   render() {
     return (
       <div className='Apply'>
-        <header className='Apply-header'>
-          <img src={leaf} className='leaf-logo' alt='leaf' />
-          <Snoop color='purple' faceColor='white' className='snoop-logo'/>
+        <header className='Apply-header'
+                onClick={this.reverseLeaf}>
+          <img src={leaf}
+               onClick={this.reverseLeaf}
+               style={{
+                 transform: animationFrames[this.state.animFrame].transform,
+                 zIndex: animationFrames[this.state.animFrame].zIndex,
+               }}
+               className='leaf-logo'
+               alt='leaf' />
+          <Snoop color={this.state.snoopHairColor}
+                 faceColor={this.state.snoopFaceColor}
+                 onFaceClick={this.setNewSnoopFace}
+                 onHairClick={this.setNewSnoopHair}
+                 className='snoop-logo'/>
         </header>
 
         <div className='Apply'>
